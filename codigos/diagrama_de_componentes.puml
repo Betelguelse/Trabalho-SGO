@@ -1,0 +1,28 @@
+@startuml
+
+component "Interface de Usuário" as UI
+component "Módulo de Inscrições" as Inscricoes
+component "Módulo de Alocação" as Alocacao
+component "Módulo de Relatórios" as Relatorios
+component "Módulo de Competições" as Competicoes
+component "Módulo de Resultados" as Resultados
+database "Banco de Dados" as BD
+
+UI --> Competicoes
+UI --> Inscricoes
+UI --> Alocacao
+UI --> Resultados
+UI --> Relatorios
+
+Inscricoes --> Competicoes
+Alocacao --> Competicoes
+Resultados --> Competicoes
+Relatorios --> Resultados
+
+Competicoes --> BD
+Inscricoes --> BD
+Alocacao --> BD
+Resultados --> BD
+Relatorios --> BD
+
+@enduml

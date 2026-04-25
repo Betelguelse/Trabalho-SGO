@@ -1,0 +1,37 @@
+@startuml
+
+node "Dispositivo do Usuário" as Usuario {
+  artifact "Navegador Web" as Navegador
+}
+
+node "Servidor Web" as ServidorWeb {
+  artifact "Interface de Usuário" as UI
+}
+
+node "Servidor de Aplicação" as ServidorApp {
+  artifact "Módulo de Competições" as Competicoes
+  artifact "Módulo de Inscrições" as Inscricoes
+  artifact "Módulo de Alocação" as Alocacao
+  artifact "Módulo de Resultados" as Resultados
+  artifact "Módulo de Relatórios" as Relatorios
+}
+
+database "Servidor de Banco de Dados" as Banco {
+  artifact "Banco de Dados Olímpico" as BD
+}
+
+Navegador --> UI : HTTP/HTTPS
+
+UI --> Competicoes
+UI --> Inscricoes
+UI --> Alocacao
+UI --> Resultados
+UI --> Relatorios
+
+Competicoes --> BD
+Inscricoes --> BD
+Alocacao --> BD
+Resultados --> BD
+Relatorios --> BD
+
+@enduml

@@ -1,0 +1,63 @@
+@startuml
+
+package "Cadastro" {
+  class "País" as Pais {
+    -idPais: int
+    -nome: String
+    -sigla: String
+  }
+
+  class "Atleta" as Atleta {
+    -idAtleta: int
+    -nome: String
+    -dataNascimento: Date
+  }
+
+  class "Modalidade" as Modalidade {
+    -idModalidade: int
+    -nome: String
+  }
+}
+
+package "Competições" {
+  class "Competição" as Competicao {
+    -idCompeticao: int
+    -data: Date
+    -horarioInicio: Time
+    -horarioFim: Time
+  }
+
+  class "Inscrição" as Inscricao {
+    -idInscricao: int
+  }
+}
+
+package "Locais" {
+  class "Local" as Local {
+    -idLocal: int
+    -nome: String
+    -capacidade: int
+    -endereco: String
+  }
+}
+
+package "Resultados" {
+  class "Resultado" as Resultado {
+    -idResultado: int
+  }
+}
+
+Pais "1" -- "0..*" Atleta
+Modalidade "1" -- "0..*" Competicao
+Local "1" -- "0..*" Competicao
+
+Competicao "1" -- "0..*" Inscricao
+Atleta "1" -- "0..*" Inscricao
+
+Competicao "1" -- "0..1" Resultado
+
+Resultado --> Atleta : ouro
+Resultado --> Atleta : prata
+Resultado --> Atleta : bronze
+
+@enduml
